@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-no-duplicate-props */
+/* eslint-disable react/jsx-no-duplicate-props react-app/react/jsx-no-duplicate-props */
 import React from "react";
 import useToggle from "../../../util/useToggle";
 

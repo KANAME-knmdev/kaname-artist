@@ -5,6 +5,7 @@ import Container from "../../Atoms/Container";
 import Header from "../../Molecules/Header";
 import Dialog from "./Dialog";
 import Card from "../../Molecules/Card";
+import "./element";
 
 // type
 
@@ -16,10 +17,11 @@ const HomePages: React.FC<any> = ({ lists }) => {
       <Container>
         {lists.map((v: any, i: number) => (
           <Card key={i}>
-            {v.name}
-            {v.nameRuby}
-            {v.birth}
-            {v.birthplace}
+            <simple-greeting
+              message={v.name}
+              myArray={JSON.stringify([v.nameRuby, v.birth, v.birthplace])}
+              myBool
+            ></simple-greeting>
           </Card>
         ))}
       </Container>

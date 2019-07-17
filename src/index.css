@@ -13,8 +13,3 @@ code {
     monospace;
 }
 
-@font-face {
-  font-family: "ロゴたいぷゴシック";
-  src: local("ロゴたいぷゴシック"),
-    url(./fonts/ロゴたいぷゴシック.otf) format("orf");
-}
