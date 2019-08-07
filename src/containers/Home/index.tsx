@@ -6,19 +6,19 @@ import { auth } from "../../firebase/auth";
 
 const HomeContainer: React.FC = () => {
   const [lists, setLists] = useState<any>([]);
-  const [isFetch, setFetch] = useState<boolean>(false);
+  const fetchList = async () => {
+    const snapshot = await DB.collection("artists").get();
+    let fetchLists = [] as any[];
+    snapshot.forEach(doc => {
+      fetchLists.push(doc.data());
+    });
+    console.log(fetchLists);
+    setLists(fetchLists);
+  };
+
   useEffect(() => {
-    (async () => {
-      const snapshot = await DB.collection("artists").get();
-      let fetchLists = [] as any[];
-      snapshot.forEach(doc => {
-        fetchLists.push(doc.data());
-      });
-      console.log(fetchLists);
-      setLists(fetchLists);
-      setFetch(false);
-    })();
-  }, [isFetch]);
+    fetchList();
+  }, []);
   const update = async (data: any) => {
     const user = auth.currentUser;
     if (!user) {
@@ -36,7 +36,7 @@ const HomeContainer: React.FC = () => {
       console.error(error);
       return new Error("failure");
     }
-    setFetch(true);
+    fetchList();
     return "OK";
   };
   return <Home lists={lists} update={update} />;
