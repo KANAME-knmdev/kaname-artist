@@ -23,7 +23,6 @@ const FormDialog: React.FC<any> = ({ open, handleClose, update }) => {
       setE(true);
     }
   });
-  console.log(errors);
   const onClose = () => {
     if (!!errors) {
       clearError();
