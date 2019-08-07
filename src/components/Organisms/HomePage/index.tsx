@@ -9,11 +9,12 @@ import "./element";
 
 // type
 
-const HomePages: React.FC<any> = ({ lists }) => {
+const HomePages: React.FC<any> = ({ lists, update }) => {
   const [isOpen, setOpen] = useState(false);
   return (
     <>
       <Header />
+      <button onClick={() => setOpen(true)}>Edit</button>
       <Container>
         {lists.map((v: any, i: number) => (
           <Card key={i}>
@@ -25,7 +26,11 @@ const HomePages: React.FC<any> = ({ lists }) => {
           </Card>
         ))}
       </Container>
-      <Dialog open={isOpen} handleClose={() => setOpen(false)} />
+      <Dialog
+        open={isOpen}
+        handleClose={() => setOpen(false)}
+        update={update}
+      />
     </>
   );
 };

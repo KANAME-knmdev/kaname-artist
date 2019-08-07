@@ -19,17 +19,17 @@ provider.addScope("email");
 export const google = provider;
 
 const useAuth = () => {
-  const [isLogin, setLogin] = useState<boolean | null>(null);
+  const [user, setUser] = useState<firebase.User | false | null>(null);
   useEffect(() => {
     firebaseAppAuth.onAuthStateChanged(user => {
       if (user) {
-        setLogin(true);
+        setUser(user);
       } else {
-        setLogin(false);
+        setUser(false);
       }
     });
   }, []);
-  return isLogin;
+  return user;
 };
 
 export { useAuth };
