@@ -9,7 +9,7 @@ import "./element";
 
 // type
 
-const HomePages: React.FC<any> = ({ lists, update }) => {
+const HomePages: React.FC<any> = ({ lists, update, handleUpload }) => {
   const [isOpen, setOpen] = useState(false);
   return (
     <>
@@ -30,6 +30,7 @@ const HomePages: React.FC<any> = ({ lists, update }) => {
         open={isOpen}
         handleClose={() => setOpen(false)}
         update={update}
+        handleUpload={handleUpload}
       />
     </>
   );

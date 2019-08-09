@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import Home from "../../components/Organisms/HomePage";
 import DB from "../../firebase/firestore";
 import { auth } from "../../firebase/auth";
+import { uploadImage } from "../../firebase/storage";
 
 const HomeContainer: React.FC = () => {
   const [lists, setLists] = useState<any>([]);
   const fetchList = async () => {
     const snapshot = await DB.collection("artists").get();
     let fetchLists = [] as any[];
-    snapshot.forEach(doc => {
+    snapshot.forEach((doc: any) => {
       fetchLists.push(doc.data());
     });
     console.log(fetchLists);
@@ -39,7 +40,15 @@ const HomeContainer: React.FC = () => {
     fetchList();
     return "OK";
   };
-  return <Home lists={lists} update={update} />;
+  const handleUpload = (file: File) => {
+    const user = auth.currentUser;
+    if (!user) return;
+    if (user.uid !== "") {
+      // TODO: message表示・エラー処理
+      uploadImage(file, `images/${user.uid}`);
+    }
+  };
+  return <Home lists={lists} update={update} handleUpload={handleUpload} />;
 };
 
 export default HomeContainer;

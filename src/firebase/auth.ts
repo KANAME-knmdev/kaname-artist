@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
 
+import firebaseApp from "./app";
 import firebase from "firebase/app";
 import "firebase/auth";
 
-import config from "./config";
-
-export const app = firebase.apps.length
-  ? firebase.app()
-  : firebase.initializeApp(config);
-
-const firebaseAppAuth = app.auth();
+const firebaseAppAuth = firebaseApp.auth();
 export const auth = firebaseAppAuth;
 
 const provider = new firebase.auth.GoogleAuthProvider();
@@ -35,4 +30,4 @@ const useAuth = () => {
 export { useAuth };
 
 export type Error = firebase.auth.Error;
-export type Auth = ReturnType<typeof app.auth>;
+export type Auth = ReturnType<typeof firebaseApp.auth>;

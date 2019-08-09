@@ -9,7 +9,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-const FormDialog: React.FC<any> = ({ open, handleClose, update }) => {
+const FormDialog: React.FC<any> = ({
+  open,
+  handleClose,
+  update,
+  handleUpload
+}) => {
   const { register, handleSubmit, errors, clearError } = useForm<any>();
   const [isError, setE] = useState<boolean>(false);
   const onSubmit = handleSubmit(async (data: any) => {
@@ -29,6 +34,11 @@ const FormDialog: React.FC<any> = ({ open, handleClose, update }) => {
     }
     handleClose();
   };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      handleUpload(e.target.files[0]);
+    }
+  };
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>プロフィール</DialogTitle>
@@ -38,6 +48,10 @@ const FormDialog: React.FC<any> = ({ open, handleClose, update }) => {
           {isError &&
             "更新に失敗しました。時間を置いてもう一度試してください。"}
         </DialogContentText>
+        <button>
+          Upload
+          <input type="file" onChange={handleChange} style={{ opacity: 0 }} />
+        </button>
         <TextField
           autoFocus
           margin="dense"
