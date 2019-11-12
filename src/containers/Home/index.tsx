@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Home from "../../components/Organisms/HomePage";
 import DB from "../../firebase/firestore";
@@ -16,7 +16,7 @@ const HomeContainer: React.FC = () => {
       setLists(fetchLists);
     })();
   }, []);
-  return <Home lists={lists} />;
+  return <></>;
 };
 
 export default HomeContainer;

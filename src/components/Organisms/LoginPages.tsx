@@ -1,38 +1,64 @@
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useLogin from "hooks/login";
 import React from "react";
-import styled from "@emotion/styled";
+import { Button, Card } from "react-rainbow-components";
+import { useHistory } from "react-router-dom";
+import { Routing } from "routing";
 
-// Atom
-import Container from "../Atoms/Container";
+import { auth, google } from "../../firebase/auth";
 
-// Molecules
-
-// Types
-
-const LoginPages: React.FC<any> = ({ handleLogin, handleLogout }) => {
+const LoginPages: React.FC<any> = () => {
+  const { isLoading, isLogin } = useLogin();
+  const history = useHistory();
+  const handleLogin = () => {
+    auth.signInWithRedirect(google);
+  };
+  const iconContainerStyles = {
+    width: "2.5rem",
+    height: "2.5rem"
+  };
+  if (isLogin) {
+    history.push(Routing.home);
+  }
   return (
-    <>
-      <Container>
-        <Title>ログイン</Title>
-        <button onClick={() => handleLogin()}>login</button>
-        <button onClick={() => handleLogout()}>logout</button>
-        <FormArea></FormArea>
-      </Container>
-    </>
+    <div className="rainbow-m-around_medium">
+      <Card
+        icon={
+          <span
+            className="rainbow-background-color_brand rainbow-border-radius_circle rainbow-align-content_center"
+            style={iconContainerStyles}
+          >
+            <FontAwesomeIcon
+              icon={faUsers}
+              size="lg"
+              className="rainbow-color_white"
+            />
+          </span>
+        }
+        title="Login"
+      >
+        <div className="rainbow-p-around_xx-large rainbow-align-content_center rainbow-flex_column">
+          <Button
+            variant="neutral"
+            className="rainbow-m-around_medium"
+            isLoading={isLoading}
+            onClick={handleLogin}
+          >
+            kanamekey.comでログイン
+            <FontAwesomeIcon
+              icon={faGoogle}
+              className="rainbow-m-left_medium"
+            />
+          </Button>
+          <h1 className="rainbow-p-top_large rainbow-font-size-heading_small rainbow-color_dark-1">
+            KANAME Artist
+          </h1>
+        </div>
+      </Card>
+    </div>
   );
 };
-
-const FormArea = styled.div`
-  max-width: 300px;
-  margin: auto;
-`;
-
-const Title = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 20px 0;
-  font-size: 18px;
-  font-weight: bold;
-`;
 
 export default LoginPages;

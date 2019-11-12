@@ -1,11 +1,9 @@
-import React from "react";
-
 import styled from "@emotion/styled";
-
 // material-ui
 import C from "@material-ui/core/Card";
 import CAA from "@material-ui/core/CardActionArea";
 import CardContentArea from "@material-ui/core/CardContent";
+import React from "react";
 
 type Props = {
   id?: number;
@@ -20,15 +18,7 @@ const Content: React.FC<Props> = ({
   isPlaceHolder = false
 }) => {
   if (isPlaceHolder) {
-    return (
-      <PlaceHolderDiv>
-        <CardActionArea>
-          <CardContentArea>
-            <PlaceHolder />
-          </CardContentArea>
-        </CardActionArea>
-      </PlaceHolderDiv>
-    );
+    return <></>;
   }
   if (onClick && id) {
     return (

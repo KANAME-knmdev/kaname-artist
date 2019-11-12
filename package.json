@@ -6,6 +6,11 @@
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.11",
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-brands-svg-icons": "^5.11.2",
+    "@fortawesome/free-regular-svg-icons": "^5.11.2",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.7",
     "@material-ui/core": "^4.1.1",
     "@material-ui/icons": "^4.2.0",
     "@material-ui/lab": "^4.0.0-alpha.17",
@@ -18,7 +23,8 @@
     "react-dom": "^16.8.6",
     "react-firebase-hooks": "^2.0.0",
     "react-hook-form": "^3.11.9",
-    "react-router-dom": "^5.0.0",
+    "react-rainbow-components": "^1.9.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.0.1",
     "use-react-router": "^1.0.7"
   },
@@ -27,23 +33,20 @@
     "@types/node": "12.0.10",
     "@types/react": "16.8.22",
     "@types/react-dom": "16.8.4",
-    "@types/react-router-dom": "^4.3.4",
+    "@types/react-router-dom": "^5.1.2",
     "@typescript-eslint/parser": "^1.9.0",
     "cross-env": "^5.2.0",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react-app": "^5.0.1",
     "husky": "^2.4.1",
+    "import-sort-cli": "^6.0.0",
+    "import-sort-parser-typescript": "^6.0.0",
+    "import-sort-style-module": "^6.0.0",
     "prettier": "^1.18.2",
-    "typescript": "^3.5.2"
+    "typescript": "^3.7.2"
   },
   "scripts": {
     "start": "react-scripts start -p 3000",
-    "mock": "cross-env REACT_APP_MOCK=1 REACT_APP_LANG=Ja react-scripts start -p 3000",
-    "mock-server": "cd mock && json-server -p 3001 --watch db.json",
     "build": "react-scripts build",
-    "lint": "eslint --rule \"no-unused-vars: \"error\"\" --color \"./src/**/*.{js,jsx,ts,tsx,json}\" --fix",
-    "test": "react-scripts test",
+    "lint": "tsc --noUnusedLocals --noUnusedParameters",
     "deploy": "yarn build && firebase deploy"
   },
   "browserslist": {
@@ -61,6 +64,12 @@
   "husky": {
     "hooks": {
       "pre-push": "yarn lint"
+    }
+  },
+  "importSort": {
+    ".ts, .tsx": {
+      "parser": "typescript",
+      "style": "module"
     }
   }
 }

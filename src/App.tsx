@@ -1,13 +1,12 @@
-import React from "react";
-
 import styled from "@emotion/styled";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { MAX_WIDTH } from "./const";
-import { Routing } from "./routing";
+import Login from "components/Organisms/LoginPages";
+import React from "react";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
+import { MAX_WIDTH } from "./const";
 import Auth from "./containers/Auth";
 import Home from "./containers/Home";
-import Login from "./containers/Login";
+import { Routing } from "./routing";
 
 const App: React.FC = () => {
   return (
