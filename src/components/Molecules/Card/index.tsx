@@ -56,16 +56,4 @@ const CardActionArea = styled(CAA)`
   height: 100%;
 `;
 
-const PlaceHolderDiv = styled(Card)`
-  && {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-`;
-
-const PlaceHolder = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
 export default Content;
-
