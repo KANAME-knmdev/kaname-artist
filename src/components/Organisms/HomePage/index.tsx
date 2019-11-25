@@ -17,13 +17,7 @@ const HomePages: React.FC<any> = ({ lists, update, handleUpload }) => {
       <button onClick={() => setOpen(true)}>Edit</button>
       <Container>
         {lists.map((v: any, i: number) => (
-          <Card key={i}>
-            <simple-greeting
-              message={v.name}
-              myArray={JSON.stringify([v.nameRuby, v.birth, v.birthplace])}
-              myBool
-            ></simple-greeting>
-          </Card>
+          <Card key={i}></Card>
         ))}
       </Container>
       <Dialog
