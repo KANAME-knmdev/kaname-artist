@@ -1,12 +1,31 @@
-import styled from "@emotion/styled";
+import Circular from "components/Atoms/Circular";
+import Home from "components/Organisms/HomePage";
 import Login from "components/Organisms/LoginPages";
+import useAuth from "hooks/auth";
 import React from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import {
+  Redirect,
+  Route,
+  BrowserRouter as Router,
+  Switch
+} from "react-router-dom";
+import { Routing } from "routing";
+import styled from "styled-components";
 
 import { MAX_WIDTH } from "./const";
-import Auth from "./containers/Auth";
-import Home from "./containers/Home";
-import { Routing } from "./routing";
+
+const Auth: React.FC = ({ children }) => {
+  const state = useAuth();
+  if (process.env.REACT_APP_MOCK) return <>{children}</>;
+  // nullの場合は処理中
+  if (state === null) return <Circular />;
+  if (state) {
+    return <>{children}</>;
+  } else {
+    // ログインしていない場合
+    return <Redirect to={Routing.login} />;
+  }
+};
 
 const App: React.FC = () => {
   return (

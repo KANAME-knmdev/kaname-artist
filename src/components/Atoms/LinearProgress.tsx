@@ -1,7 +1,6 @@
-import React from "react";
-
-import styled from "@emotion/styled";
 import LP from "@material-ui/core/LinearProgress";
+import React from "react";
+import styled from "styled-components";
 
 interface Props {
   color?: "primary" | "secondary";

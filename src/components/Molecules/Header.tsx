@@ -1,11 +1,10 @@
-import React from "react";
-
-import styled from "@emotion/styled";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-
+import Toolbar from "@material-ui/core/Toolbar";
+import React from "react";
+import styled from "styled-components";
 import useReactRouter from "use-react-router";
+
 import { Routing } from "../../routing";
 
 const Header: React.FC = () => {
